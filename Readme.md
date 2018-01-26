@@ -1,6 +1,8 @@
 # Учебный проект «Код и Магия» [![Build status][travis-image]][travis-url]
 
-* Студент: [Алексей Ляшневский](https://up.htmlacademy.ru/javascript/12/user/603093).
+* Студент: [Алексей Ляшневский]
+* Наставник [Александер Вагнер]
+(https://up.htmlacademy.ru/javascript/12/user/603093).
 
 ---
 
