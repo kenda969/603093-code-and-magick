@@ -12,7 +12,6 @@ var names = ['Вы', 'Кекс', 'Катя', 'Игорь'];
 var colorGistagramm = ['#FC0D1B', '#020E86', '#9999A1', '#666780'];
 var times = [2805, 4025, 1244, 1339];
 var colorText = '#000';
-var x = 1;
 
 // Сортировка массива в случайном порядке.
 
@@ -43,6 +42,7 @@ window.renderStatistics = function (ctx) {
   ctx.font = '16px PT Mono';
 
   var renderItems = function () {
+    var x = 1;
     for (var i = 0; i < names.length; i++) {
 
       var gistagramHeight = (GISTAGRAMM_HEIGHT * 1000) / times[i];
@@ -60,3 +60,4 @@ window.renderStatistics = function (ctx) {
   };
   renderItems();
 };
+
