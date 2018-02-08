@@ -1,10 +1,5 @@
 'use strict';
 
-// удаление классов.
-
-document.querySelector('.setup').classList.remove('hidden');
-document.querySelector('.setup-similar').classList.remove('hidden');
-
 // нахождение селекторов.
 
 var similarListElement = document.querySelector('.setup-similar-list');
@@ -48,4 +43,71 @@ for (var i = 0; i < 4; i++) {
 }
 
 similarListElement.appendChild(fragment);
+
+
+var ENTER = 13;
+var ESC = 27;
+
+var wizardBag = document.querySelector('.setup');
+
+var openWizardBagButton = document.querySelector('.setup-open');
+
+var inputName = wizardBag.querySelector('.setup-user-name');
+
+var inputFocusHendler = function (evt) {
+    if(evt.target.inputName){
+      console.log('работает');
+    }
+}
+
+
+
+inputName.addEventListener('focus', inputFocusHendler, true);
+
+var escKeydownkHendler = function (evt) {
+  if (evt.keyCode === ESC) {
+    closeWizardBag();
+  }
+};
+
+var openWizardBag = function () {
+  wizardBag.classList.remove('hidden');
+  document.addEventListener('keydown', escKeydownkHendler);
+};
+
+var closeWizardBag = function () {
+  wizardBag.classList.add('hidden');
+
+  wizardBag.removeEventListener('keydown', escKeydownkHendler); //тут
+  closeWizardBagButton.addEventListener('keydown', enterCloseKeydownHendler);
+};
+
+
+
+
+var deleteHiddenClickHendler = function () {
+  openWizardBag();
+};
+openWizardBagButton.addEventListener('click', deleteHiddenClickHendler);
+
+var enterOpenKeydownHendler = function (evt) {
+  if (evt.keyCode === ENTER) {
+    openWizardBag();
+  }
+};
+openWizardBagButton.addEventListener('keydown', enterOpenKeydownHendler);
+
+var closeWizardBagButton = wizardBag.querySelector('.setup-close');
+
+var addHiddenClickHendler = function () {
+  closeWizardBag();
+};
+closeWizardBagButton.addEventListener('click', addHiddenClickHendler);
+
+var enterCloseKeydownHendler = function (evt) {
+  if (evt.keyCode === ENTER) {
+    closeWizardBag();
+  }
+};
+
 
