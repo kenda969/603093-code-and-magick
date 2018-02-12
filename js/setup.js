@@ -135,3 +135,4 @@ var changeWizardFireballClickHendler = function () {
   wizardFireball.style.backgroundColor = fireballColor[i];
 };
 wizardFireball.addEventListener('click', changeWizardFireballClickHendler);
+
