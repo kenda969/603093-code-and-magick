@@ -1,7 +1,5 @@
 'use strict';
 (function () {
-
-
 // нахождение селекторов.
   var i;
   var similarListElement = document.querySelector('.setup-similar-list');
@@ -67,12 +65,14 @@
 
   // Перетаскивание предметов из магазина в мешок
 
+
   var draggetItem = null;
 
   wizardBagShop.addEventListener('dragstart', function (evt) {
     if (evt.target.tagName.toLowerCase() === 'img') {
       draggetItem = evt.target;
       evt.dataTransfer.setData('text/plain', evt.target.alt);
+      wizardBagArtifactsElement.style.outline = '2px dashed red';
     }
   });
 
@@ -83,6 +83,7 @@
 
   wizardBagArtifactsElement.addEventListener('drop', function (evt) {
     evt.target.style.backgroundColor = '';
+    wizardBagArtifactsElement.style.outline = '';
     evt.target.appendChild(draggetItem);
     evt.preventDefault();
   });
@@ -97,7 +98,5 @@
     evt.target.style.backgroundColor = '';
     evt.preventDefault();
   });
-
-
 
 })();
