@@ -42,15 +42,13 @@
 
 
   // клонирование шаблона DOM элемента с и внедрение массивов данных.
-
-
+  document.querySelector('.setup-similar').classList.remove('hidden');
   var wizardItem = function () {
     var wizardElement = similarWizardTemplate.cloneNode(true);
     wizardElement.querySelector('.setup-similar-label').style.fontSize = '16px';
     wizardElement.querySelector('.setup-similar-label').textContent = WIZARD_FIRST_NAMES[i] + ' ' + WIZARD_LAST_NAMES[i];
     wizardElement.querySelector('.wizard-coat').style.fill = window.coat();
     wizardElement.querySelector('.wizard-eyes').style.fill = window.eyes();
-
     return wizardElement;
   };
 
@@ -64,8 +62,6 @@
   similarListElement.appendChild(fragment);
 
   // Перетаскивание предметов из магазина в мешок
-
-
   var draggetItem = null;
 
   wizardBagShop.addEventListener('dragstart', function (evt) {
