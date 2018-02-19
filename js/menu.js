@@ -6,15 +6,15 @@
 
   var ESC = 27;
 
-  var wizardBag = document.querySelector('.setup');
+  window.wizardBag = document.querySelector('.setup');
 
   var openWizardBagButton = document.querySelector('.setup-open');
 
-  var closeWizardBagButton = wizardBag.querySelector('.setup-close');
+  var closeWizardBagButton = window.wizardBag.querySelector('.setup-close');
 
-  var inputName = wizardBag.querySelector('.setup-user-name');
+  var inputName = window.wizardBag.querySelector('.setup-user-name');
 
-  var wizardBagMove = wizardBag.querySelector('.upload');
+  var wizardBagMove = window.wizardBag.querySelector('.upload');
 
   // var wizardBagUpload = wizardBag.querySelector('.upload');
 
@@ -34,13 +34,14 @@
   };
   // Взаимодействие пользователя с меню настройками волшебника.
   var openWizardBag = function () {
-    wizardBag.classList.remove('hidden');
+    window.wizardBag.classList.remove('hidden');
+    window.wizardBag.querySelector('.setup-similar').classList.remove('hidden');
     document.addEventListener('keydown', escKeydownkHendler);
   };
 
   var closeWizardBag = function () {
-    wizardBag.classList.add('hidden');
-    wizardBag.removeEventListener('keydown', escKeydownkHendler);
+    window.wizardBag.classList.add('hidden');
+    window.wizardBag.removeEventListener('keydown', escKeydownkHendler);
     closeWizardBagButton.addEventListener('keydown', enterCloseKeydownHendler);
   };
 
@@ -93,8 +94,8 @@
         y: moveEvt.clientY
       };
 
-      wizardBag.style.top = (wizardBag.offsetTop - shift.y) + 'px';
-      wizardBag.style.left = (wizardBag.offsetLeft - shift.x) + 'px';
+      window.wizardBag.style.top = (window.wizardBag.offsetTop - shift.y) + 'px';
+      window.wizardBag.style.left = (window.wizardBag.offsetLeft - shift.x) + 'px';
     };
 
     var onMouseUp = function (upEvt) {

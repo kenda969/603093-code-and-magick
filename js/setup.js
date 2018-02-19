@@ -1,77 +1,45 @@
 'use strict';
 (function () {
-// нахождение селекторов.
+  // нахождение селекторов.
   var i;
   var similarListElement = document.querySelector('.setup-similar-list');
   var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
-
-  // объявление и заполнение массивов.
-  //
-  // var WIZARD_FIRST_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
-  // var WIZARD_LAST_NAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Вальц', 'Топольницкая', 'Нионго', 'Ирвинг'];
-  //
-  // window.fireball = function () {
-  //   var fireballColor = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
-  //   var fireballColorRand = fireballColor.sort(window.compareRandom);
-  //   return fireballColorRand[i];
-  // };
-  //
-  // window.coat = function () {
-  //   var coatColor = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
-  //   var coatColorRand = coatColor.sort(window.compareRandom);
-  //   return coatColorRand[i];
-  // };
-  //
-  // window.eyes = function () {
-  //   var eyesColor = ['black', 'red', 'blue', 'yellow', 'green'];
-  //   var eyesRand = eyesColor.sort(window.compareRandom);
-  //   return eyesRand[i];
-  // };
-  // var wizardBagShop = document.querySelector('.setup-artifacts-shop');
-  // var wizardBagArtifactsElement = document.querySelector('.setup-artifacts');
-  //
-  //
-  // // рандомная сортировка массивов.
-  //
-  // window.compareRandom = function () {
-  //   return Math.random() - 0.5;
-  // };
-  //
-  // WIZARD_FIRST_NAMES.sort(window.compareRandom);
-  // WIZARD_LAST_NAMES.sort(window.compareRandom);
-
+  var wizardBagShop = document.querySelector('.setup-artifacts-shop');
+  var wizardBagArtifactsElement = document.querySelector('.setup-artifacts');
 
   // клонирование шаблона DOM элемента с и внедрение массивов данных.
-  document.querySelector('.setup-similar').classList.remove('hidden');
-  var wizardItem = function () {
+  var wizardItem = function (wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
     wizardElement.querySelector('.setup-similar-label').style.fontSize = '16px';
-    wizardElement.querySelector('.setup-similar-label').textContent = wizards.name;
-    wizardElement.querySelector('.wizard-coat').style.fill = wizards.coat;
-    wizardElement.querySelector('.wizard-eyes').style.fill = wizards.eyes;
+    wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
+    wizardElement.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
+    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.colorEyes;
     return wizardElement;
   };
-
-  window.load(function (wizards) {
-    var fragment = document.createDocumentFragment();
-
-    for (i = 0; i < wizards.length; i++) {
-      fragment.appendChild(wizardItem(wizards[i]));
-    }
-    similarListElement.appendChild(fragment);
-
-    querySelector('.setup-similar').classList.remove('hidden');
-  });
-
 
   // Добавление 4х шаблонов в DOM.
 
   var fragment = document.createDocumentFragment();
-  for (i = 0; i < 4; i++) {
-    fragment.appendChild(wizardItem());
-  }
+  window.backend.load(function (wizards) {
+    for (i = 0; i < 4; i++) {
+      fragment.appendChild(wizardItem(wizards[i]));
+    }
 
-  similarListElement.appendChild(fragment);
+    similarListElement.appendChild(fragment);
+
+  });
+
+  window.backend.load(function (errorMessage) {
+    var node = document.createElement('div');
+    node.style = 'z-index: 100; margin: 0 auto; 400px; text-align: center; background-color: red;';
+    node.style.position = 'absolute';
+    node.style.left = 0;
+    node.style.right = 0;
+    node.style.fontSize = '20px';
+
+    node.textContent = errorMessage;
+    document.body.insertAdjacentElement('afterbegin', node);
+  });
 
   // Перетаскивание предметов из магазина в мешок
   var draggetItem = null;
