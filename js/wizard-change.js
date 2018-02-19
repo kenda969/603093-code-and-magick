@@ -26,4 +26,12 @@
     wizardFireball.style.backgroundColor = window.fireball();
   };
   wizardFireball.addEventListener('click', changeWizardFireballClickHendler);
+
+  var form = document.querySelector('.setup-wizard-form');
+  form.addEventListener('submit', function (evt) {
+    window.upload(new FormData(form), function (response) {
+      form.classList.add('hidden');
+    });
+    evt.preventDefault();
+  });
 })();
