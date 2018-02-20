@@ -3,21 +3,13 @@
 
 
   var ENTER = 13;
-
   var ESC = 27;
-
   window.wizardBag = document.querySelector('.setup');
-
+  var wizardForm = window.wizardBag.querySelector('form')
   var openWizardBagButton = document.querySelector('.setup-open');
-
   var closeWizardBagButton = window.wizardBag.querySelector('.setup-close');
-
   var inputName = window.wizardBag.querySelector('.setup-user-name');
-
   var wizardBagMove = window.wizardBag.querySelector('.upload');
-
-  // var wizardBagUpload = wizardBag.querySelector('.upload');
-
   var inputCurrentTarget = null;
 
   var inputFocusHendler = function (evt) {
@@ -69,7 +61,6 @@
   };
 
     // перетаскивание меню
-
   wizardBagMove.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
 
@@ -117,5 +108,14 @@
 
   });
 
-
+  // Реализация кнопки сохранить
+  wizardForm .addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    window.wizardError();
+    var data = new FormData(wizardForm);
+    var onLoad = function () {
+      closeWizardBag();
+    };
+    window.backend.save(data, onLoad, onError);
+  });
 })();

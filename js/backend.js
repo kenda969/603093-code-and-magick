@@ -20,7 +20,7 @@
     });
 
     xhr.addEventListener('timeout', function () {
-      onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
+      onError('Запрос не выполнен за зазданное время ' + xhr.timeout + 'мс');
     });
 
     return xhr;

@@ -19,26 +19,23 @@
 
   // Добавление 4х шаблонов в DOM.
 
-  var fragment = document.createDocumentFragment();
-  window.backend.load(function (wizards) {
-    for (i = 0; i < 4; i++) {
-      fragment.appendChild(wizardItem(wizards[i]));
-    }
-
+  window.wizardError = function (errorMessage) {
     similarListElement.appendChild(fragment);
-
-  });
-
-  window.backend.load(function (errorMessage) {
     var node = document.createElement('div');
     node.style = 'z-index: 100; margin: 0 auto; 400px; text-align: center; background-color: red;';
     node.style.position = 'absolute';
     node.style.left = 0;
     node.style.right = 0;
     node.style.fontSize = '20px';
-
     node.textContent = errorMessage;
     document.body.insertAdjacentElement('afterbegin', node);
+  };
+  var fragment = document.createDocumentFragment();
+  window.backend.load(function (wizards, errorMessage) {
+    for (i = 0; i < 4; i++) {
+      fragment.appendChild(wizardItem(wizards[i]));
+    }
+    window.wizardError(errorMessage);
   });
 
   // Перетаскивание предметов из магазина в мешок
