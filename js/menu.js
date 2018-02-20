@@ -5,7 +5,7 @@
   var ENTER = 13;
   var ESC = 27;
   window.wizardBag = document.querySelector('.setup');
-  var wizardForm = window.wizardBag.querySelector('form')
+  var wizardForm = window.wizardBag.querySelector('form');
   var openWizardBagButton = document.querySelector('.setup-open');
   var closeWizardBagButton = window.wizardBag.querySelector('.setup-close');
   var inputName = window.wizardBag.querySelector('.setup-user-name');
