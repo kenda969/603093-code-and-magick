@@ -116,6 +116,6 @@
     var onLoad = function () {
       closeWizardBag();
     };
-    window.backend.save(data, onLoad, onError);
+    window.backend.save(data, onLoad);
   });
 })();
